@@ -27,7 +27,7 @@ app.whenReady().then(() => {
   tray.setToolTip('Atlantis Apps Launcher');
 
   const trayMenu = Menu.buildFromTemplate([
-    { label: 'Open Atlantis Apps Launcher', click: createWindow }
+    { label: 'Open Atlantis Apps Launcher', click: createWindow },
     { label: 'Exit', click: () => app.quit() }
   ]);
 
