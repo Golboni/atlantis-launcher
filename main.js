@@ -6,7 +6,7 @@ let tray = null;
 function createWindow() {
   const win = new BrowserWindow({
     width: 460,
-    height: 620,
+    height: 680,
     title: "Atlantis Apps Launcher",
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
