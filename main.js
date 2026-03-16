@@ -2,6 +2,7 @@ const { app, BrowserWindow, Tray, Menu } = require('electron');
 const path = require('path');
 const { exec } = require('child_process');
 const { ipcMain } = require('electron');
+const net = require('net');   // <-- Added for port checking
 
 let tray = null;
 
@@ -12,10 +13,10 @@ function createWindow() {
     title: "Atlantis Apps Launcher",
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
-  	preload: path.join(__dirname, 'preload.js'),
-  	nodeIntegration: false,
-  	contextIsolation: true,
-  	sandbox: false
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: false,
+      contextIsolation: true,
+      sandbox: false
     }
   });
 
@@ -33,7 +34,9 @@ app.whenReady().then(() => {
     { label: 'Exit', click: () => app.quit() }
   ]);
 
-// STATUS CHECK HANDLER
+  // -----------------------------
+  // PROCESS STATUS CHECK HANDLER
+  // -----------------------------
   ipcMain.handle('check-status', async (event, processName) => {
     return new Promise((resolve) => {
       exec(`tasklist`, (err, stdout) => {
@@ -43,7 +46,35 @@ app.whenReady().then(() => {
     });
   });
 
-  // RUN COMMAND HANDLER (MISSING PIECE)
+  // -----------------------------
+  // PORT STATUS CHECK HANDLER
+  // -----------------------------
+  ipcMain.handle('check-port', async (event, port) => {
+    return new Promise((resolve) => {
+      const socket = new net.Socket();
+      socket.setTimeout(500);
+
+      socket.once('connect', () => {
+        socket.destroy();
+        resolve(true);
+      });
+
+      socket.once('timeout', () => {
+        socket.destroy();
+        resolve(false);
+      });
+
+      socket.once('error', () => {
+        resolve(false);
+      });
+
+      socket.connect(port, '127.0.0.1');
+    });
+  });
+
+  // -----------------------------
+  // RUN COMMAND HANDLER
+  // -----------------------------
   ipcMain.on('run-cmd', (event, cmd) => {
     exec(cmd);
   });
