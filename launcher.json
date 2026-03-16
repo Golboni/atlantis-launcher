@@ -1,0 +1,46 @@
+{
+  "apps": [
+    {
+      "id": "icebreakrz",
+      "name": "IceBreakrz",
+      "icon": "icons/icebreakrz.png",
+      "batch": "E:/Data/AtlantisITS/atlantis-launcher/scripts/start-icebreakrz.bat",
+      "process": "icebreakrz.exe"
+    },
+    {
+      "id": "popoff",
+      "name": "Pop Off",
+      "icon": "icons/popoff.png",
+      "batch": "E:/Data/AtlantisITS/atlantis-launcher/scripts/start-popoff.bat",
+      "process": "popoff.exe"
+    },
+    {
+      "id": "command",
+      "name": "Command Center",
+      "icon": "icons/command-center.png",
+      "batch": "E:/Data/AtlantisITS/atlantis-launcher/scripts/start-command-center.bat",
+      "process": "command-center.exe"
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "icon": "icons/n8n.png",
+      "batch": "E:/Data/AtlantisITS/atlantis-launcher/scripts/start-n8n.bat",
+      "process": "n8n.exe"
+    },
+    {
+      "id": "docker",
+      "name": "Docker Desktop",
+      "icon": "icons/docker.png",
+      "batch": "E:/Data/AtlantisITS/atlantis-launcher/scripts/start-docker.bat",
+      "process": "docker.exe"
+    },
+    {
+      "id": "mkdocs",
+      "name": "MkDocs",
+      "icon": "icons/mkdocs.png",
+      "batch": "E:/Data/AtlantisITS/atlantis-launcher/scripts/start-mkdocs.bat",
+      "process": "mkdocs.exe"
+    }
+  ]
+}
