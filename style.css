@@ -31,3 +31,40 @@ button.danger:hover {
   background: #ff5555;
   color: #0d1117;
 }
+
+/* Layout for rows with status + button */
+.app-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px auto;
+  width: 90%;
+  justify-content: flex-start;
+}
+
+/* Icon next to button text */
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Status light (grey = off, green = running) */
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: grey;
+}
+
+.status-dot.running {
+  background: #00ff00;
+}
+
+/* Button layout with icon */
+.app-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+

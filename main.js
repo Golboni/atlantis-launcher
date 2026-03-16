@@ -1,5 +1,7 @@
 const { app, BrowserWindow, Tray, Menu } = require('electron');
 const path = require('path');
+const { exec } = require('child_process');
+const { ipcMain } = require('electron');
 
 let tray = null;
 
@@ -30,6 +32,21 @@ app.whenReady().then(() => {
     { label: 'Open Atlantis Apps Launcher', click: createWindow },
     { label: 'Exit', click: () => app.quit() }
   ]);
+
+// STATUS CHECK HANDLER
+  ipcMain.handle('check-status', async (event, processName) => {
+    return new Promise((resolve) => {
+      exec(`tasklist`, (err, stdout) => {
+        if (err) return resolve(false);
+        resolve(stdout.toLowerCase().includes(processName.toLowerCase()));
+      });
+    });
+  });
+
+  // RUN COMMAND HANDLER (MISSING PIECE)
+  ipcMain.on('run-cmd', (event, cmd) => {
+    exec(cmd);
+  });
 
   tray.setContextMenu(trayMenu);
 });

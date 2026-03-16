@@ -7,15 +7,58 @@
 <body>
   <h1>Atlantis Apps Launcher</h1>
 
-  <button onclick="atlantis.run('start-icebreakrz.bat')">Start IceBreakrz</button>
-  <button onclick="atlantis.run('start-popoff.bat')">Start Pop Off</button>
-  <button onclick="atlantis.run('start-command-center.bat')">Start Command Center</button>
-  <button onclick="atlantis.run('start-n8n.bat')">Start n8n</button>
-  <button onclick="atlantis.run('start-docker.bat')">Start Docker Desktop</button>
-  <button onclick="atlantis.run('start-mkdocs.bat')">MkDocs</button>
+  <div class="app-row">
+    <span id="icebreakrz-status" class="status-dot"></span>
+    <button class="app-btn" onclick="atlantis.run('start-icebreakrz.bat')">
+      <img src="icons/icebreakrz.png" class="icon">
+      Start IceBreakrz
+    </button>
+  </div>
+
+  <div class="app-row">
+    <span id="popoff-status" class="status-dot"></span>
+    <button class="app-btn" onclick="atlantis.run('start-popoff.bat')">
+      <img src="icons/popoff.png" class="icon">
+      Start Pop Off
+    </button>
+  </div>
+
+  <div class="app-row">
+    <span id="command-status" class="status-dot"></span>
+    <button class="app-btn" onclick="atlantis.run('start-command-center.bat')">
+      <img src="icons/command-center.png" class="icon">
+      Start Command Center
+    </button>
+  </div>
+
+  <div class="app-row">
+    <span id="n8n-status" class="status-dot"></span>
+    <button class="app-btn" onclick="atlantis.run('start-n8n.bat')">
+      <img src="icons/n8n.png" class="icon">
+      Start n8n
+    </button>
+  </div>
+
+  <div class="app-row">
+    <span id="docker-status" class="status-dot"></span>
+    <button class="app-btn" onclick="atlantis.run('start-docker.bat')">
+      <img src="icons/docker.png" class="icon">
+      Start Docker Desktop
+    </button>
+  </div>
+
+  <div class="app-row">
+    <span id="mkdocs-status" class="status-dot"></span>
+    <button class="app-btn" onclick="atlantis.run('start-mkdocs.bat')">
+      <img src="icons/mkdocs.png" class="icon">
+      MkDocs
+    </button>
+  </div>
 
   <hr>
 
   <button class="danger" onclick="atlantis.run('stop-all.bat')">Stop All Apps</button>
+
+  <script src="renderer.js"></script>
 </body>
 </html>

@@ -1,9 +1,6 @@
-const { contextBridge, shell } = require('electron');
-const path = require('path');
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('atlantis', {
-  run: (script) => {
-    const fullPath = path.join(__dirname, 'scripts', script);
-    shell.openPath(fullPath);
-  }
+  run: (cmd) => ipcRenderer.send('run-cmd', cmd),
+  checkStatus: (processName) => ipcRenderer.invoke('check-status', processName)
 });
