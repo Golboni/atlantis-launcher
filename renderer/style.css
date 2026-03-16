@@ -1,0 +1,33 @@
+body {
+  background: #0d1117;
+  color: #00ffaa;
+  font-family: Arial;
+  text-align: center;
+  padding: 20px;
+}
+
+button {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  background: #161b22;
+  border: 1px solid #00ffaa;
+  color: #00ffaa;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00ffaa;
+  color: #0d1117;
+}
+
+button.danger {
+  border-color: #ff5555;
+  color: #ff5555;
+}
+
+button.danger:hover {
+  background: #ff5555;
+  color: #0d1117;
+}
