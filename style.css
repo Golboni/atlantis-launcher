@@ -68,3 +68,12 @@ button.danger:hover {
   width: 100%;
 }
 
+.version-label {
+  font-size: 14px;
+  color: #00ffaa;
+  opacity: 0.8;
+  margin-bottom: 20px;
+  text-shadow: 0 0 6px #00ffaa;
+}
+
+
