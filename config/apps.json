@@ -1,28 +1,4 @@
 {
-  "docker": {
-    "name": "Docker Desktop",
-    "script": "start-docker.bat",
-    "stopScript": null,
-    "port": null,
-    "health": null
-  },
-
-  "n8n": {
-    "name": "n8n",
-    "script": "start-n8n.bat",
-    "stopScript": "stop-n8n.bat",
-    "port": 5678,
-    "health": "http://localhost:5678"
-  },
-
-  "ntfy": {
-    "name": "NTFY",
-    "script": "start-ntfy.bat",
-    "stopScript": "stop-ntfy.bat",
-    "port": 8080,
-    "health": "http://localhost:8080"
-  },
-
   "icebreakrz": {
     "name": "IceBreakrz",
     "script": "start-icebreakrz.bat",
@@ -30,28 +6,46 @@
     "port": 3010,
     "health": "http://localhost:3010"
   },
-
-  "command": {
-    "name": "Command Center",
-    "script": "start-command.bat",
-    "stopScript": "stop-command.bat",
-    "port": 3000,
-    "health": "http://localhost:3000"
-  },
-
   "popoff": {
     "name": "Pop Off",
     "script": "start-popoff.bat",
     "stopScript": "stop-popoff.bat",
     "port": 8081,
-    "health": "http://localhost:8081"
+    "health": null
   },
-
+  "command": {
+    "name": "Command Center",
+    "script": "start-command-center.bat",
+    "stopScript": "stop-command-center.bat",
+    "port": 3000,
+    "health": "http://localhost:3000"
+  },
+  "n8n": {
+    "name": "n8n",
+    "script": "start-n8n.bat",
+    "stopScript": "stop-n8n.bat",
+    "port": 5678,
+    "health": "http://localhost:5678/healthz"
+  },
+  "docker": {
+    "name": "Docker Desktop",
+    "script": "start-docker.bat",
+    "stopScript": null,
+    "port": null,
+    "health": null
+  },
+  "ntfy": {
+    "name": "NTFY",
+    "script": "start-ntfy.bat",
+    "stopScript": "stop-ntfy.bat",
+    "port": 8080,
+    "health": "http://localhost:8080"
+  },
   "mkdocs": {
     "name": "MkDocs",
     "script": "start-mkdocs.bat",
     "stopScript": "stop-mkdocs.bat",
     "port": 8000,
-    "health": "http://localhost:8000"
+    "health": null
   }
 }

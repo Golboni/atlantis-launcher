@@ -1,47 +1,94 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-console.log("Electron running from:", __dirname);
+const { app, BrowserWindow, Tray, Menu } = require('electron');
 const path = require('path');
+const { exec } = require('child_process');
+const { ipcMain } = require('electron');
+const net = require('net');
 
-const {
-  startApp,
-  stopApp,
-  restartApp,
-  startAll,
-  stopAll,
-  restartAll
-} = require('./engine/orchestrator');
-
-const { startStatusWriter, stopStatusWriter } = require('./engine/status-writer');
+let tray = null;
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1100,
-    height: 900,
+    width: 480,
+    height: 840,
+    title: "Atlantis Apps Launcher",
+    icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
-      contextIsolation: true
+      contextIsolation: true,
+      sandbox: false
     }
   });
 
-  win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
+  win.loadFile('renderer/index.html');
 }
 
 app.whenReady().then(() => {
   createWindow();
-  startStatusWriter(); // begin writing status.json every 2s
+
+  // -----------------------------
+  // SYSTEM TRAY
+  // -----------------------------
+  tray = new Tray(path.join(__dirname, 'icon.png'));
+  tray.setToolTip('Atlantis Apps Launcher');
+
+  const trayMenu = Menu.buildFromTemplate([
+    { label: 'Open Atlantis Apps Launcher', click: createWindow },
+    { label: 'Exit', click: () => app.quit() }
+  ]);
+
+  tray.setContextMenu(trayMenu);
+
+  // -----------------------------
+  // PROCESS STATUS CHECK HANDLER
+  // -----------------------------
+  ipcMain.handle('check-status', async (event, processName) => {
+    return new Promise((resolve) => {
+      if (!processName) return resolve(false); // safety guard
+
+      exec(`tasklist`, (err, stdout) => {
+        if (err) return resolve(false);
+
+        const list = stdout.toLowerCase();
+        resolve(list.includes(processName.toLowerCase()));
+      });
+    });
+  });
+
+  // -----------------------------
+  // PORT STATUS CHECK HANDLER
+  // -----------------------------
+  ipcMain.handle('check-port', async (event, port) => {
+    return new Promise((resolve) => {
+      const socket = new net.Socket();
+      socket.setTimeout(500);
+
+      socket.once('connect', () => {
+        socket.destroy();
+        resolve(true);
+      });
+
+      socket.once('timeout', () => {
+        socket.destroy();
+        resolve(false);
+      });
+
+      socket.once('error', () => {
+        resolve(false);
+      });
+
+      socket.connect(port, '127.0.0.1');
+    });
+  });
+
+  // -----------------------------
+  // RUN COMMAND HANDLER
+  // -----------------------------
+  ipcMain.handle('run-script', async (event, scriptName) => {
+    console.log("RUN SCRIPT:", scriptName);      // <--- TEMP DEBUG
+    if (!scriptName) return;
+
+    const scriptPath = path.join(__dirname, 'scripts', `${scriptName}.bat`);
+    exec(`"${scriptPath}"`);
+  });
 });
-
-app.on('window-all-closed', () => {
-  stopStatusWriter();
-  if (process.platform !== 'darwin') app.quit();
-});
-
-/* IPC COMMANDS FROM UI */
-ipcMain.handle('start-app', (_, appId) => startApp(appId));
-ipcMain.handle('stop-app', (_, appId) => stopApp(appId));
-ipcMain.handle('restart-app', (_, appId) => restartApp(appId));
-
-ipcMain.handle('start-all', () => startAll());
-ipcMain.handle('stop-all', () => stopAll());
-ipcMain.handle('restart-all', () => restartAll());
