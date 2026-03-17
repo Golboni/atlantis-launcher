@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+console.log("Electron running from:", __dirname);
 const path = require('path');
 
 const {
@@ -23,7 +24,7 @@ function createWindow() {
     }
   });
 
-  win.loadFile('./renderer/index.html');
+  win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
 }
 
 app.whenReady().then(() => {

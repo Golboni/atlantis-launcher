@@ -1,12 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
   const updateUI = () => {
-    fetch('../status.json')
+    fetch('status.json')
       .then(res => res.json())
       .then(status => {
         Object.keys(status).forEach(id => {
           const dot = document.getElementById(`${id}-status`);
           if (!dot) return;
 
+	  console.log("Fetching status.json...");
           const state = status[id].status;
 
           if (state === 'healthy') {

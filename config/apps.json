@@ -1,64 +1,57 @@
 {
   "docker": {
     "name": "Docker Desktop",
+    "script": "start-docker.bat",
+    "stopScript": null,
     "port": null,
-    "start": "scripts/start-docker.bat",
-    "stop": null,
-    "health": null,
-    "type": "system"
+    "health": null
   },
 
   "n8n": {
-    "name": "n8n Automation",
+    "name": "n8n",
+    "script": "start-n8n.bat",
+    "stopScript": "stop-n8n.bat",
     "port": 5678,
-    "start": "scripts/start-n8n.bat",
-    "stop": "scripts/stop-n8n.bat",
-    "health": "http://localhost:5678/healthz",
-    "type": "service"
+    "health": "http://localhost:5678"
   },
 
   "ntfy": {
-    "name": "NTFY Server",
+    "name": "NTFY",
+    "script": "start-ntfy.bat",
+    "stopScript": "stop-ntfy.bat",
     "port": 8080,
-    "start": "scripts/start-ntfy.bat",
-    "stop": "scripts/stop-ntfy.bat",
-    "health": "http://localhost:8080",
-    "type": "service"
+    "health": "http://localhost:8080"
   },
 
   "icebreakrz": {
     "name": "IceBreakrz",
+    "script": "start-icebreakrz.bat",
+    "stopScript": "stop-icebreakrz.bat",
     "port": 3010,
-    "start": "scripts/start-icebreakrz.bat",
-    "stop": "scripts/stop-icebreakrz.bat",
-    "health": "http://localhost:3010/health",
-    "type": "app"
+    "health": "http://localhost:3010"
   },
 
   "command": {
-    "name": "Atlantis Command Center",
+    "name": "Command Center",
+    "script": "start-command.bat",
+    "stopScript": "stop-command.bat",
     "port": 3000,
-    "start": "scripts/start-command.bat",
-    "stop": "scripts/stop-command.bat",
-    "health": "http://localhost:3000",
-    "type": "app"
+    "health": "http://localhost:3000"
   },
 
   "popoff": {
     "name": "Pop Off",
+    "script": "start-popoff.bat",
+    "stopScript": "stop-popoff.bat",
     "port": 8081,
-    "start": "scripts/start-popoff.bat",
-    "stop": "scripts/stop-popoff.bat",
-    "health": "http://localhost:8081",
-    "type": "app"
+    "health": "http://localhost:8081"
   },
 
   "mkdocs": {
-    "name": "MkDocs Server",
+    "name": "MkDocs",
+    "script": "start-mkdocs.bat",
+    "stopScript": "stop-mkdocs.bat",
     "port": 8000,
-    "start": "scripts/start-mkdocs.bat",
-    "stop": "scripts/stop-mkdocs.bat",
-    "health": "http://localhost:8000",
-    "type": "service"
+    "health": "http://localhost:8000"
   }
 }
