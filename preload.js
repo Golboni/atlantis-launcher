@@ -1,7 +1,11 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('atlantis', {
-  run: (cmd) => ipcRenderer.send('run-cmd', cmd),
-  checkStatus: (processName) => ipcRenderer.invoke('check-status', processName),
-  checkPort: (port) => ipcRenderer.invoke('check-port', port)
+  start: (id) => ipcRenderer.invoke('start-app', id),
+  stop: (id) => ipcRenderer.invoke('stop-app', id),
+  restart: (id) => ipcRenderer.invoke('restart-app', id),
+
+  startAll: () => ipcRenderer.invoke('start-all'),
+  stopAll: () => ipcRenderer.invoke('stop-all'),
+  restartAll: () => ipcRenderer.invoke('restart-all')
 });

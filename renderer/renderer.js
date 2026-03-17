@@ -1,63 +1,29 @@
-console.log("Atlantis Launcher Renderer Loaded");
+window.addEventListener('DOMContentLoaded', () => {
+  const updateUI = () => {
+    fetch('../status.json')
+      .then(res => res.json())
+      .then(status => {
+        Object.keys(status).forEach(id => {
+          const dot = document.getElementById(`${id}-status`);
+          if (!dot) return;
 
-// Update status lights every 2 seconds
-function updateStatus() {
+          const state = status[id].status;
 
-  // -------------------------
-  // IceBreakrz (port 3010)
-  // -------------------------
-  window.atlantis.checkPort(3010).then(isRunning => {
-    document.getElementById('icebreakrz-status')
-      .classList.toggle('running', isRunning);
-  });
-
-  // -------------------------
-  // Pop Off (Metro Bundler, port 8081)
-  // -------------------------
-  window.atlantis.checkPort(8081).then(isRunning => {
-    document.getElementById('popoff-status')
-      .classList.toggle('running', isRunning);
-  });
-
-  // -------------------------
-  // Command Center (Next.js, port 3000)
-  // -------------------------
-  window.atlantis.checkPort(3000).then(isRunning => {
-    document.getElementById('command-status')
-      .classList.toggle('running', isRunning);
-  });
-
-  // -------------------------
-  // n8n (port 5678)
-  // -------------------------
-  window.atlantis.checkPort(5678).then(isRunning => {
-    document.getElementById('n8n-status')
-      .classList.toggle('running', isRunning);
-  });
-
-  // -------------------------
-  // Docker Desktop (process-based)
-  // -------------------------
-  atlantis.checkStatus('docker.exe').then(isRunning => {
-    document.getElementById('docker-status')
-      .classList.toggle('running', isRunning);
-  });
-
-  // -------------------------
-  // MkDocs (python or mkdocs)
-  // -------------------------
-  atlantis.checkStatus('mkdocs.exe').then(isRunning => {
-    const dot = document.getElementById('mkdocs-status');
-    if (isRunning) {
-      dot.classList.add('running');
-    } else {
-      atlantis.checkStatus('python.exe').then(pyRunning => {
-        dot.classList.toggle('running', pyRunning);
+          if (state === 'healthy') {
+            dot.style.background = '#00ff00';
+          } else if (state === 'running-unhealthy') {
+            dot.style.background = '#ffff00';
+          } else if (state === 'stopped') {
+            dot.style.background = '#ff0000';
+          } else {
+            dot.style.background = 'gray';
+          }
+        });
+      })
+      .catch(() => {
+        // If status.json isn't ready yet, keep dots gray
       });
-    }
-  });
-}
+  };
 
-// Start the loop
-setInterval(updateStatus, 2000);
-updateStatus();
+  setInterval(updateUI, 1500);
+});

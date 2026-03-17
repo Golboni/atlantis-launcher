@@ -1,20 +1,68 @@
 body {
-  background: #0d1117;
-  color: #00ffaa;
-  font-family: Arial;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: Arial, sans-serif;
   text-align: center;
+  margin: 0;
   padding: 20px;
+}
+
+h1 {
+  color: #00ffaa;
+  margin-bottom: 5px;
+}
+
+.version-label {
+  color: #00ffaa;
+  opacity: 0.7;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.global-controls {
+  margin-bottom: 25px;
+}
+
+.control-btn {
+  background: #161b22;
+  border: 1px solid #00ffaa;
+  color: #00ffaa;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+.control-btn:hover {
+  background: #00ffaa;
+  color: #0d1117;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 0 40px;
+}
+
+.app-block {
+  background: #161b22;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #00ffaa33;
+  box-shadow: 0 0 10px #00ffaa22;
 }
 
 button {
   width: 90%;
   padding: 12px;
-  margin: 10px 0;
-  background: #161b22;
+  background: #0d1117;
   border: 1px solid #00ffaa;
   color: #00ffaa;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 button:hover {
@@ -22,56 +70,19 @@ button:hover {
   color: #0d1117;
 }
 
-button.danger {
-  border-color: #ff5555;
-  color: #ff5555;
+.port-label {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #00ffcc;
+  opacity: 0.85;
+  text-align: center;
 }
 
-button.danger:hover {
-  background: #ff5555;
-  color: #0d1117;
-}
-
-/* Layout for rows with status + button */
-.app-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px auto;
-  width: 90%;
-  justify-content: flex-start;
-}
-
-/* Icon next to button text */
-.icon {
-  width: 24px;
-  height: 24px;
-}
-
-/* Status light (grey = off, green = running) */
 .status-dot {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: grey;
-}
-
-.status-dot.running {
-  background: #00ff00;
-}
-
-/* Button layout with icon */
-.app-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.version-label {
-  font-size: 14px;
-  color: #00ffaa;
-  opacity: 0.8;
-  margin-bottom: 20px;
-  text-shadow: 0 0 6px #00ffaa;
+  background: gray;
+  margin: 10px auto 0;
+  box-shadow: 0 0 6px #000;
 }

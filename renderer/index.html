@@ -1,67 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>Atlantis Apps Launcher v2</title>
   <link rel="stylesheet" href="style.css">
-  <title>Atlantis Apps Launcher</title>
 </head>
+
 <body>
   <h1>Atlantis Apps Launcher</h1>
-  <div class="version-label">v1.5</div>
+  <div class="version-label">v2.0</div>
 
-  <div class="app-row">
-    <span id="icebreakrz-status" class="status-dot"></span>
-    <button class="app-btn" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\start-icebreakrz.bat')">
-      <img src="icons/icebreakrz.png" class="icon">
-      Start IceBreakrz
-    </button>
+  <!-- GLOBAL CONTROLS -->
+  <div class="global-controls">
+    <button class="control-btn" onclick="atlantis.startAll()">Start All</button>
+    <button class="control-btn" onclick="atlantis.stopAll()">Stop All</button>
+    <button class="control-btn" onclick="atlantis.restartAll()">Restart All</button>
   </div>
 
-  <div class="app-row">
-    <span id="popoff-status" class="status-dot"></span>
-    <button class="app-btn" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\start-popoff.bat')">
-      <img src="icons/popoff.png" class="icon">
-      Start Pop Off
-    </button>
+  <!-- APP GRID -->
+  <div class="app-grid">
+
+    <!-- Docker Desktop -->
+    <div class="app-block">
+      <button onclick="atlantis.start('docker')">Start Docker Desktop</button>
+      <div class="port-label">system</div>
+      <div id="docker-status" class="status-dot"></div>
+    </div>
+
+    <!-- n8n -->
+    <div class="app-block">
+      <button onclick="atlantis.start('n8n')">Start n8n</button>
+      <div class="port-label">localhost:5678</div>
+      <div id="n8n-status" class="status-dot"></div>
+    </div>
+
+    <!-- NTFY -->
+    <div class="app-block">
+      <button onclick="atlantis.start('ntfy')">Start NTFY</button>
+      <div class="port-label">localhost:8080</div>
+      <div id="ntfy-status" class="status-dot"></div>
+    </div>
+
+    <!-- IceBreakrz -->
+    <div class="app-block">
+      <button onclick="atlantis.start('icebreakrz')">Start IceBreakrz</button>
+      <div class="port-label">localhost:3010</div>
+      <div id="icebreakrz-status" class="status-dot"></div>
+    </div>
+
+    <!-- Command Center -->
+    <div class="app-block">
+      <button onclick="atlantis.start('command')">Start Command Center</button>
+      <div class="port-label">localhost:3000</div>
+      <div id="command-status" class="status-dot"></div>
+    </div>
+
+    <!-- Pop Off -->
+    <div class="app-block">
+      <button onclick="atlantis.start('popoff')">Start Pop Off</button>
+      <div class="port-label">localhost:8081</div>
+      <div id="popoff-status" class="status-dot"></div>
+    </div>
+
+    <!-- MkDocs -->
+    <div class="app-block">
+      <button onclick="atlantis.start('mkdocs')">Start MkDocs</button>
+      <div class="port-label">localhost:8000</div>
+      <div id="mkdocs-status" class="status-dot"></div>
+    </div>
+
   </div>
 
-  <div class="app-row">
-    <span id="command-status" class="status-dot"></span>
-    <button class="app-btn" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\start-command-center.bat')">
-      <img src="icons/command-center.png" class="icon">
-      Start Command Center
-    </button>
-  </div>
-
-  <div class="app-row">
-    <span id="n8n-status" class="status-dot"></span>
-    <button class="app-btn" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\start-n8n.bat')">
-      <img src="icons/n8n.png" class="icon">
-      Start n8n
-    </button>
-  </div>
-
-  <div class="app-row">
-    <span id="docker-status" class="status-dot"></span>
-    <button class="app-btn" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\start-docker.bat')">
-      <img src="icons/docker.png" class="icon">
-      Start Docker Desktop
-    </button>
-  </div>
-
-  <div class="app-row">
-    <span id="mkdocs-status" class="status-dot"></span>
-    <button class="app-btn" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\start-mkdocs.bat')">
-      <img src="icons/mkdocs.png" class="icon">
-      MkDocs
-    </button>
-  </div>
-
-  <hr>
-
-  <button class="danger" onclick="atlantis.run('E:\\Data\\AtlantisITS\\atlantis-launcher\\scripts\\stop-all.bat')">
-    Stop All Apps
-  </button>
-
-  <script src="renderer.js"></script>
 </body>
 </html>

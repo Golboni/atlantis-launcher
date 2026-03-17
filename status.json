@@ -1,0 +1,37 @@
+{
+  "docker": {
+    "status": "stopped",
+    "port": null,
+    "lastCheck": 1773726387830
+  },
+  "n8n": {
+    "status": "healthy",
+    "port": 5678,
+    "lastCheck": 1773726387835
+  },
+  "ntfy": {
+    "status": "stopped",
+    "port": 8080,
+    "lastCheck": 1773726387836
+  },
+  "icebreakrz": {
+    "status": "stopped",
+    "port": 3010,
+    "lastCheck": 1773726387837
+  },
+  "command": {
+    "status": "healthy",
+    "port": 3000,
+    "lastCheck": 1773726387861
+  },
+  "popoff": {
+    "status": "stopped",
+    "port": 8081,
+    "lastCheck": 1773726387862
+  },
+  "mkdocs": {
+    "status": "running-unhealthy",
+    "port": 8000,
+    "lastCheck": 1773726387865
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "docker": {
+    "name": "Docker Desktop",
+    "port": null,
+    "start": "scripts/start-docker.bat",
+    "stop": null,
+    "health": null,
+    "type": "system"
+  },
+
+  "n8n": {
+    "name": "n8n Automation",
+    "port": 5678,
+    "start": "scripts/start-n8n.bat",
+    "stop": "scripts/stop-n8n.bat",
+    "health": "http://localhost:5678/healthz",
+    "type": "service"
+  },
+
+  "ntfy": {
+    "name": "NTFY Server",
+    "port": 8080,
+    "start": "scripts/start-ntfy.bat",
+    "stop": "scripts/stop-ntfy.bat",
+    "health": "http://localhost:8080",
+    "type": "service"
+  },
+
+  "icebreakrz": {
+    "name": "IceBreakrz",
+    "port": 3010,
+    "start": "scripts/start-icebreakrz.bat",
+    "stop": "scripts/stop-icebreakrz.bat",
+    "health": "http://localhost:3010/health",
+    "type": "app"
+  },
+
+  "command": {
+    "name": "Atlantis Command Center",
+    "port": 3000,
+    "start": "scripts/start-command.bat",
+    "stop": "scripts/stop-command.bat",
+    "health": "http://localhost:3000",
+    "type": "app"
+  },
+
+  "popoff": {
+    "name": "Pop Off",
+    "port": 8081,
+    "start": "scripts/start-popoff.bat",
+    "stop": "scripts/stop-popoff.bat",
+    "health": "http://localhost:8081",
+    "type": "app"
+  },
+
+  "mkdocs": {
+    "name": "MkDocs Server",
+    "port": 8000,
+    "start": "scripts/start-mkdocs.bat",
+    "stop": "scripts/stop-mkdocs.bat",
+    "health": "http://localhost:8000",
+    "type": "service"
+  }
+}
